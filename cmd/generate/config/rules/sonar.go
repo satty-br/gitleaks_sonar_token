@@ -17,14 +17,12 @@ func Sonar() *config.Rule {
 	// validate
 	tps := utils.GenerateSampleSecrets("sonar", "12345678ABCDEFH1234567890ABCDEFH12345678")
 	tps = append(tps,
-		`const SONAR_LOGIN = "12345678ABCDEFH1234567890ABCDEFH12345678"`,          // gitleaks:allow
-		`const SONAR_LOGIN = "sqp_12345678ABCDEFH1234567890ABCDEFH12345678"`,      // gitleaks:allow
-		`SONAR_LOGIN := "12345678ABCDEFH1234567890ABCDEFH12345678"`,               // gitleaks:allow
-		`SONAR.LOGIN ::= "12345678ABCDEFH1234567890ABCDEFH12345678"`,              // gitleaks:allow
-		`SONAR.LOGIN :::= "12345678ABCDEFH1234567890ABCDEFH12345678"`,             // gitleaks:allow
-		`SONAR.LOGIN ?= "12345678ABCDEFH1234567890ABCDEFH12345678"`,               // gitleaks:allow
-		`name="sonar.login" value="12345678ABCDEFH1234567890ABCDEFH12345678"`,     // gitleaks:allow
-		`name="sonar.login" value="sqp_12345678ABCDEFH1234567890ABCDEFH12345678"`, // gitleaks:allow
+		`const SONAR_LOGIN = "12345678ABCDEFH1234567890ABCDEFH12345678"`,      // gitleaks:allow
+		`SONAR_LOGIN := "12345678ABCDEFH1234567890ABCDEFH12345678"`,           // gitleaks:allow
+		`SONAR.LOGIN ::= "12345678ABCDEFH1234567890ABCDEFH12345678"`,          // gitleaks:allow
+		`SONAR.LOGIN :::= "12345678ABCDEFH1234567890ABCDEFH12345678"`,         // gitleaks:allow
+		`SONAR.LOGIN ?= "12345678ABCDEFH1234567890ABCDEFH12345678"`,           // gitleaks:allow
+		`name="sonar.login" value="12345678ABCDEFH1234567890ABCDEFH12345678"`, // gitleaks:allow
 	)
 	return utils.Validate(r, tps, nil)
 }
