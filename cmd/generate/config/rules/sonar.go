@@ -3,7 +3,6 @@ package rules
 import (
 	"github.com/zricethezav/gitleaks/v8/cmd/generate/config/utils"
 	"github.com/zricethezav/gitleaks/v8/config"
-	"github.com/zricethezav/gitleaks/v8/regexp"
 )
 
 func Sonar() *config.Rule {
@@ -11,7 +10,7 @@ func Sonar() *config.Rule {
 	r := config.Rule{
 		Description: "Uncovered a Sonar API token, potentially compromising software vulnerability scanning and code security.",
 		RuleID:      "sonar-api-token",
-		Regex:       regexp.MustCompile(`[\w.\- ]{0,50}?(?i:sonar[_.-]?(login|token))(?:[ \t\w.-]{0,20})[\s'"\\]{0,3}(?:=|\.=|>|:{1,3}=|\|\||:|=>|\?=|,)[\x60'"\s=\\]{0,5}([a-z0-9]{40})(?:[\x60'"\s;\\}]|\\[nr]|$)[\s'"\\]{0,3}`),
+		Regex:       utils.GenerateSemiGenericRegex([]string{"sonar[_.-]?(?:(?:login|token)[_.-]?)"}, utils.AlphaNumericExtended("40"), true),
 		Keywords:    []string{"sonar"},
 	}
 
